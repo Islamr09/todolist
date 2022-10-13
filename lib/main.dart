@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:todo/screens/calendar.dart';
+import './screens/home.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'ToDo App',
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  text: 'Main',
+                ),
+                Tab(
+                  text: 'Adding task',
+                ),
+                Tab(
+                  text: 'Featured',
+                ),
+              ],
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              Home(),
+              CalendarPage(),
+              Icon(Icons.directions_transit),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
